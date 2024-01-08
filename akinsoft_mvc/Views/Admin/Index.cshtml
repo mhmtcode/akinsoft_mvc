@@ -1,0 +1,136 @@
+﻿@model List<akinsoft_mvc.Models.Items>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                    <li class="breadcrumb-item active">Register Password List</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Register Password List</h4>
+        </div>
+    </div>
+</div>
+
+
+<a href="/Admin/Register" class="btn btn-info"><i class="mdi mdi-file-plus mdi-18px"></i> <span>Add</span> </a>
+<br />
+<!-- end page title -->
+<br />
+
+<div class="app-search dropdown d-none d-lg-block">
+    <form method="post" action="/Admin/">
+        <div class="input-group">
+            <input type="search" class="form-control dropdown-toggle" name="search" placeholder="Search..." id="top-search">
+            <span class="mdi mdi-magnify search-icon"></span>
+            <button class="input-group-text btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+<br />
+<div class="table-responsive-sm">
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Register Name</th>
+                <th>URL Adress</th>
+                <th>Category</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.ID</td>
+                    <td>@item.registername</td>
+                    <td><a href="@item.urladress" target="_blank">@item.urladress</a></td>
+                    <td>@item.category</td>
+                    <td>@item.username</td>
+                    <td>@item.password</td>
+                    <td><a href="/Admin/Register/@item.ID" class="btn btn-secondary rounded"><i class="mdi mdi-book-edit"></i> Edit</a></td>
+                    <td class="table-action">
+                        <form action="/Admin/Register_Delete" method="post">
+                            <input hidden id="id" name="id" value="@item.ID" />
+                            <button class="btn btn-danger rounded" type="submit" onclick="return confirm('Are you sure you want to delete ?');"><i class="mdi mdi-delete"></i> Delete</button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="modal fade" id="centermodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <form action="/Admin/Register_Save" class="modal-dialog modal-dialog-centered" method="post">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="col-form-label">Register Name</label>
+                    <input type="text" class="form-control" name="registername" required>
+                </div>
+                <div class="mb-3">
+                    <label class="col-form-label">URL Adress</label>
+                    <input type="url" class="form-control" name="urladress" required />
+                </div>
+                <div class="mb-3">
+                    <label class="col-form-label">Catagory Select</label>
+                    <select id="select_1" class="form-select" name="category" required>               
+                    </select>
+                   
+                </div>
+                <div class="mb-3">
+                    <label class="col-form-label">User Name</label>
+                    <input type="text" class="form-control" name="username" required />
+                </div>
+                <div class="mb-3">
+                    <label class="col-form-label">Password</label>
+                    <div class="input-group flex-nowrap">
+                        <input id="pass_1" name="ConfirmPassword" type="password" class="form-control" data-size="8" data-character-set="a-z,A-Z,0-9,#" maxlength="8">
+                        <div class="input-group-text">
+                            <span class="password-reflash getNewPass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="col-form-label">Password</label>
+                    <div class="input-group input-group-merge">
+                        <input id="pass_2" name="password" type="password" class="form-control", required = "required" maxlength="8" />
+                          <div class="input-group-text" data-password="false">
+                            <span class="password-eye"></span>
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit"  class="btn btn-primary">Saved</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </form><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,56 @@
+﻿@model akinsoft_mvc.Models.login_page
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="card-body p-4">
+
+    <div class="text-center w-75 m-auto">
+        <h4 class="text-dark-50 text-center pb-0 fw-bold">Password Manager Login Page</h4>
+        <p class="text-muted mb-4">You can login with your username and password.</p>
+    </div>
+
+    @using (Html.BeginForm("Index", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+    {
+
+        <div class="mb-3">
+            <label class="form-label">User Name</label>
+            @Html.TextBoxFor(X => Model.username, new { @class = "form-control", @type = "text", @placeholder = "Enter your username", required = "required" })
+            @*<input class="form-control" type="text" name="username" required placeholder="Enter Username">*@
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group input-group-merge">
+                @Html.TextBoxFor(X => Model.password, new { @class = "form-control", @type = "password", required = "required" })
+                @*<input type="password" name="password" class="form-control" placeholder="Enter Password" required>*@
+                <div class="input-group-text" data-password="false">
+                    <span class="password-eye"></span>
+                </div>
+            </div>
+            @Html.Raw(@ViewBag.Error)
+        </div>
+
+        <div class="mb-3 mb-0 text-center">
+            <button class="btn btn-primary" type="submit"> Login </button>
+        </div>
+    }
+
+</div> <!-- end card-body -->
+
+@section card_footer
+{
+
+    <div class="row mt-3">
+        <div class="col-12 text-center">
+            <p class="text-muted">Don't have an account? <a href="/Home/Signup" class="text-muted ms-1"><b>Sign Up</b></a></p>
+        </div> <!-- end col -->
+    </div>
+    <!-- end row -->
+}
+
+@section script
+{
+    <script src="~/Scripts/Pages/IndexScripts.js"></script>
+}

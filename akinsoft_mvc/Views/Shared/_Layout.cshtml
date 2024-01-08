@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Akinsoft Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Akinsoft Panel Login Page | Mehmet KARAHÜYÜK" name="description" />
+    <meta content="Mehmet KARAHÜYÜK" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/Template/assets/images/logo.png" type="image/png">
+    
+
+    <!-- App css -->
+    <link href="~/Template/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Template/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+</head>
+
+<body class="loading authentication-bg">
+    <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-4 col-lg-5">
+                    <div class="card">
+
+                        <!-- Logo -->
+                        <div class="card-header pt-4 pb-4 text-center bg-primary">
+                            <a href="/">
+                                <span><img src="~/Template/assets/images/logo.png" alt="akinsoft logo" height="120"></span>
+                            </a>
+                        </div>
+
+                        @RenderBody()
+                    </div>
+                    <!-- end card -->
+
+                    @RenderSection("card_footer", required: false)
+
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end page -->
+
+    <footer class="footer footer-alt">
+        2023 -
+        <script>document.write(new Date().getFullYear())</script> © Hyper - Mehmet KARAÜHÜYÜK
+    </footer>
+
+    <!-- bundle -->
+    <script src="~/Template/assets/js/vendor.min.js"></script>
+    <script src="~/Template/assets/js/app.min.js"></script>
+    @RenderSection("script", required: false)
+</body>
+</html>

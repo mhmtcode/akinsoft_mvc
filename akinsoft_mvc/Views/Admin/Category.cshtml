@@ -1,0 +1,80 @@
+﻿@model List<akinsoft_mvc.Models.catagory>
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/">Home</a></li>
+                    <li class="breadcrumb-item active">Category List</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Category List</h4>
+        </div>
+    </div>
+</div>
+
+
+<a data-bs-toggle="modal" data-bs-target="#centermodal" class="btn btn-info"><i class="mdi mdi-file-plus mdi-18px"></i> <span>Add</span> </a>
+<br />
+<!-- end page title -->
+<br />
+
+<table class="table dt-responsive nowrap w-100">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Category Name</th>
+            
+
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.ID</td>
+                <td>@item.Catagory_Name</td>
+              
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<div class="modal fade" id="centermodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <form action="/Admin/Category_Saved" class="modal-dialog modal-dialog-centered" method="post">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">Category Saved</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <input hidden name="User_id" value="@ViewBag.User_id" />
+                <div class="mb-3">
+                    <label class="col-form-label">Category Name</label>
+                    <input type="text" class="form-control" name="Catagory_Name" required>
+                </div>
+          
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Saved</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </form><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+@section script
+{
+    <script src="~/Scripts/Pages/adminScripts.js"></script>
+}

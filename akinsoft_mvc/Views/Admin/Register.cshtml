@@ -1,0 +1,75 @@
+﻿@model akinsoft_mvc.Models.Item_Saved
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Admin", FormMethod.Post, new { @class = "modal-dialog modal-dialog-centered" }))
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Register Page</h4>
+        </div>
+        <div class="modal-body">
+
+            <input name="ID" value="@Model.ID" hidden />
+            <input name="User_id" value="@ViewBag.User_id" hidden />
+            <div class="mb-3">
+                <label class="col-form-label">Register Name</label>
+                @Html.TextBoxFor(X => Model.registername, new { @class = "form-control", @type = "text", @placeholder = "Enter your name", required = "required" })
+                @Html.ValidationMessageFor(model => model.registername)
+            </div>
+            <div class="mb-3">
+                <label class="col-form-label">URL Adress</label>
+                @Html.TextBoxFor(X => Model.urladress, new { @class = "form-control", @type = "url", @placeholder = "Enter your name", required = "required" })
+                @Html.ValidationMessageFor(model => model.urladress)
+            </div>
+            <div class="mb-3">
+                <label class="col-form-label">Catagory Select</label>
+                <input id="category_id" value="@Model.category_id" hidden />
+                <select id="select_1" class="form-select" name="category_id" required>
+                </select>
+
+            </div>
+            <div class="mb-3">
+                <label class="col-form-label">User Name</label>
+                @Html.TextBoxFor(X => Model.username, new { @class = "form-control", @type = "text", @placeholder = "Enter your name", required = "required" })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label class="col-form-label">Password</label>
+                <div class="input-group flex-nowrap">
+                    <input id="pass_1" name="ConfirmPassword" type="password" class="form-control" data-size="8" data-character-set="a-z,A-Z,0-9">
+                    <div class="input-group-text">
+                        <span class="password-reflash getNewPass"></span>
+
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="col-form-label">Password</label>
+                <div class="input-group input-group-merge">
+                    @Html.TextBoxFor(X => Model.password, new { @id = "pass_2", @class = "form-control", @type = "password", required = "required" })
+
+                    <div class="input-group-text" data-password="false">
+                        <span class="password-eye"></span>
+                    </div>
+
+                </div>
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="modal-footer">
+                <a href="/Admin" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Saved</button>
+            </div>
+        </div>
+        </div>
+        }
+    <!-- /.modal-dialog -->
+        @section script
+{
+            <script src="~/Scripts/Pages/adminScripts.js"></script>
+        }
