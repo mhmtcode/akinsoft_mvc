@@ -73,6 +73,8 @@ namespace akinsoft_mvc.Controllers
             ViewBag.User_id = HomeController.user_id;
             return View(itemBPL.get_category_list(HomeController.user_id).Result);
             //V2
+
+            //Masterde Gelismeler
         }
 
         public ActionResult Category_Saved(catagory mdl)
